@@ -11,7 +11,8 @@
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "vercel-build": "node ace build --production && node ace serve --no-watch --environment=production"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
