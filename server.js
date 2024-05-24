@@ -1,7 +1,14 @@
-const { Ignitor } = require('@adonisjs/core/build/src/Ignitor')
-const { Application } = require('@adonisjs/core/build/src/Ignitor')
+const { Ignitor } = require('@adonisjs/ignitor')
+const http = require('http')
 
-new Ignitor(new Application(__dirname, 'production'))
-  .httpServer()
-  .start()
-  .catch(console.error)
+const server = http.createServer((req, res) => {
+  new Ignitor(require('@adonisjs/fold'))
+    .appRoot(__dirname)
+    .fireHttpServer()
+    .then(() => {
+      const handleRequest = require('server')
+      handleRequest(req, res)
+    })
+})
+
+server.listen(process.env.PORT || 3000)
